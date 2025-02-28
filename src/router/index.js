@@ -18,13 +18,9 @@ const router = createRouter({
       path: '/:report_id',
       name: 'allowedParam',
       component: HomePage,
-      props: true, // Pass param as a prop
-      beforeEnter: (to, from, next) => {
-        if (isValidParam(to.params.report_id)) {
-          next() // Allow navigation
-        } else {
-          next('/') // Redirect invalid params to home
-        }
+      props: (route) => {
+        const reportId = route.query.report_id
+        return isValidParam(reportId) ? { reportId } : {} // Pass as prop only if valid
       },
     },
     {

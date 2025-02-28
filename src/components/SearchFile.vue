@@ -10,7 +10,7 @@ const router = useRouter()
 const route = useRoute()
 const isLoading = ref(false)
 const errorResponse = ref(null)
-const searchQuery = ref(route.params.report_id || '')
+const searchQuery = ref(route.query.report_id || '')
 const { setReport } = useReportStore()
 const { getFilename } = storeToRefs(useReportStore())
 const getReportData = () => {
@@ -37,14 +37,15 @@ const getReportData = () => {
   }
 }
 onMounted(() => {
-  if (route.params.report_id) {
-    router.push(`/${route.params.report_id}`)
+  if (route.query.report_id) {
+    router.push({ query: { report_id: route.query.report_id } })
     getReportData()
   }
 })
 </script>
 
 <template>
+  <!-- <pre>{{ route }}</pre> -->
   <section class="bg-gray-50 h-screen" v-if="getFilename == null">
     <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
       <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900">
