@@ -38,7 +38,7 @@ const getReportData = () => {
 }
 onMounted(() => {
   if (route.params.report_id) {
-    router.push({ params: { report_id: route.params.report_id } })
+    router.push(`/${route.params.report_id}`)
     getReportData()
   }
 })
