@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+body {
+  font-family: "Outfit", serif;
+}
+
+/* Change checkbox color */
+input[type="checkbox"] {
+  accent-color: oklch(0.627 0.194 149.214);
+  /* Change to any color */
+}
