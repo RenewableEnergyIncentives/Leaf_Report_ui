@@ -4,8 +4,9 @@ import { onMounted, ref } from 'vue'
 import { useReportStore } from '@/stores/report'
 import { transfermDataForStore } from '@/utils'
 import { storeToRefs } from 'pinia'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
+const router = useRouter()
 const route = useRoute()
 const isLoading = ref(false)
 const errorResponse = ref(null)
@@ -37,6 +38,7 @@ const getReportData = () => {
 }
 onMounted(() => {
   if (route.params.report_id) {
+    router.push({ params: { report_id: route.params.report_id } })
     getReportData()
   }
 })
